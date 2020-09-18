@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "541957740445",
+    "firebase_url": "https://werentapp-c98dc.firebaseio.com",
+    "project_id": "werentapp-c98dc",
+    "storage_bucket": "werentapp-c98dc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:541957740445:android:eb3ed10267729617138174",
+        "android_client_info": {
+          "package_name": "com.example.werentapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "541957740445-8kfo0fi2ooukdqikti2c0bbfi7un7peo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.werentapp",
+            "certificate_hash": "6b0039193f63477a2bf8eba64e1b6b59da03c0af"
+          }
+        },
+        {
+          "client_id": "541957740445-scltdnsv0pucqamgv2gj6pfk8indckrb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuHXoV-rt4EY9UONT16QlqgtayUy42jkE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "541957740445-scltdnsv0pucqamgv2gj6pfk8indckrb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
