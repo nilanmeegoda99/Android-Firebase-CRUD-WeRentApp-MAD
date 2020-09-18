@@ -20,7 +20,7 @@ public class registerActivity extends AppCompatActivity {
     private EditText txtEmail,txtPass;
     private Button btnReg;
 
-    FirebaseAuth auth;
+    private FirebaseAuth auth;
 
     private void cleartextfields()
     {
@@ -33,8 +33,8 @@ public class registerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        txtEmail = findViewById(R.id.etEmail);
-        txtPass = findViewById(R.id.etPass);
+        txtEmail = findViewById(R.id.etEmailL);
+        txtPass = findViewById(R.id.etPassL);
         btnReg = findViewById(R.id.btnregis);
 
         auth = FirebaseAuth.getInstance();
@@ -44,8 +44,8 @@ public class registerActivity extends AppCompatActivity {
                                     @Override
                                       public void onClick(View v)
                                     {
-                                        String textEmail = txtEmail.getText().toString();
-                                        String textPass = txtPass.getText().toString();
+                                        String textEmail = txtEmail.getText().toString().trim();
+                                        String textPass = txtPass.getText().toString().trim();
 
                                         if(TextUtils.isEmpty(textEmail) || TextUtils.isEmpty(textPass)) {
 
