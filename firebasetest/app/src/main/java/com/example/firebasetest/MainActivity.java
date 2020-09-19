@@ -48,6 +48,14 @@ public class MainActivity extends AppCompatActivity {
 
         std= new Student();
 
+        txtID.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                clearControls();
+
+            }
+            });
+
         btnSave.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 dbref = FirebaseDatabase.getInstance().getReference().child("Student");
@@ -113,8 +121,71 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btnUpdate.setOnClickListener(new View.OnClickListener()
+        {
+            public  void  onClick(View v)
+            {
+                DatabaseReference upref = FirebaseDatabase.getInstance().getReference().child("Student");
+                upref.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.hasChild("std3")) {
+                            try {
+                                std.setID((txtID.getText().toString().trim()));
+                                std.setName((txtName.getText().toString().trim()));
+                                std.setAddress((txtAdd.getText().toString().trim()));
+                                std.setConNo(Integer.parseInt(txtConNo.getText().toString().trim()));
+
+                                dbref = FirebaseDatabase.getInstance().getReference().child("Student").child("std3");
+                                dbref.setValue(std);
+                                clearControls();
+
+                                Toast.makeText(getApplicationContext(), "Data updated successfully !", Toast.LENGTH_SHORT).show();
+                            } catch (NumberFormatException e) {
+                                Toast.makeText(getApplicationContext(), "Invalid Contact Number !", Toast.LENGTH_SHORT).show();
+                            }
+                        } else
+                            Toast.makeText(getApplicationContext(), "No Source to update !", Toast.LENGTH_SHORT).show();
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            }
 
 
 
+
+        });
+
+        btnDelete.setOnClickListener(new View.OnClickListener()
+        {
+            public  void  onClick(View v)
+            {
+                DatabaseReference delref = FirebaseDatabase.getInstance().getReference().child("Student");
+                delref.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.hasChild("std3"))
+                        {
+                            dbref = FirebaseDatabase.getInstance().getReference().child("Student").child("std3");
+                            dbref.removeValue();
+                            clearControls();
+
+                            Toast.makeText(getApplicationContext(), "Deleted succefully !", Toast.LENGTH_SHORT).show();
+
+                        }
+                        else
+                            Toast.makeText(getApplicationContext(), "No Source to delete !", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            }
+        });
     }
 }
