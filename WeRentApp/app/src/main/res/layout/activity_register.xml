@@ -40,13 +40,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="161dp"
-        android:layout_marginTop="37dp"
-        android:layout_marginEnd="162dp"
+        android:layout_marginTop="31dp"
+        android:layout_marginEnd="164dp"
         android:text="@string/reg_btn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etaddress" />
+        app:layout_constraintTop_toBottomOf="@+id/chkBB" />
 
     <EditText
         android:id="@+id/etfname"
@@ -107,4 +106,28 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etconno" />
+
+    <CheckBox
+        android:id="@+id/chkBR"
+        android:layout_width="165dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="11dp"
+        android:text="Register as a renter"
+        app:layout_constraintEnd_toStartOf="@+id/chkBB"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etaddress" />
+
+    <CheckBox
+        android:id="@+id/chkBB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="48dp"
+        android:text="Register as a buyer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/chkBR"
+        app:layout_constraintTop_toBottomOf="@+id/etaddress" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,7 +23,7 @@ public class StartActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 startActivity(new Intent(StartActivity.this, registerActivity.class));
-                finish();
+
             }
                                   }
         );
@@ -32,7 +32,7 @@ public class StartActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 startActivity(new Intent(StartActivity.this, loginActivity.class));
-                finish();
+
             }
         });
     }
