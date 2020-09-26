@@ -31,6 +31,41 @@ public class loginActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private FirebaseFirestore fstore;
 
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(FirebaseAuth.getInstance().getCurrentUser() != null)
+        {
+            DocumentReference dref = FirebaseFirestore.getInstance().collection("Users").document(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+            dref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    if(documentSnapshot.getString("isAdmin") != null)
+                    {
+                        //if user is a renter
+                        startActivity(new Intent(getApplicationContext(),AdminActivity.class));
+                        finish();
+                    }
+
+                    if(documentSnapshot.getString("isUser") != null)
+                    {
+                        //if user is a normal buyer
+                        startActivity(new Intent(getApplicationContext(), UserProfile.class));
+                        finish();
+                    }
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    FirebaseAuth.getInstance().signOut();
+                    startActivity(new Intent(getApplicationContext(),loginActivity.class));
+                    finish();
+                }
+            });
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,7 +144,7 @@ public class loginActivity extends AppCompatActivity {
         @Override
         public void onSuccess(AuthResult authResult) {
             Toast.makeText(loginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
-            checkUserAccessLevel(authResult.getUser().getUid());
+            checkUserAccessLevel(authResult.getUser().getEmail());
 
 
         }
@@ -126,8 +161,8 @@ public class loginActivity extends AppCompatActivity {
 
     }
 
-    private void checkUserAccessLevel(String uid) {
-        DocumentReference df = fstore.collection("Users").document(uid);
+    private void checkUserAccessLevel(String mail) {
+        DocumentReference df = fstore.collection("Users").document(mail);
         // extract the data from document of the user
         df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
@@ -144,7 +179,7 @@ public class loginActivity extends AppCompatActivity {
 
                 if(documentSnapshot.getString("isUser") != null) {
                     //user is normal buyer
-                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                    startActivity(new Intent(getApplicationContext(), UserProfile.class));
                     finish();
 
                 }
@@ -153,37 +188,5 @@ public class loginActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if(FirebaseAuth.getInstance().getCurrentUser() != null)
-        {
-            DocumentReference dref = FirebaseFirestore.getInstance().collection("Users").document(FirebaseAuth.getInstance().getCurrentUser().getUid());
-            dref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                @Override
-                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    if(documentSnapshot.getString("isAdmin") != null)
-                    {
-                        //if user is a renter
-                        startActivity(new Intent(getApplicationContext(),AdminActivity.class));
-                        finish();
-                    }
 
-                    if(documentSnapshot.getString("isUser") != null)
-                    {
-                        //if user is a normal buyer
-                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                        finish();
-                    }
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    FirebaseAuth.getInstance().signOut();
-                    startActivity(new Intent(getApplicationContext(),loginActivity.class));
-                    finish();
-                }
-            });
-        }
-    }
 }
