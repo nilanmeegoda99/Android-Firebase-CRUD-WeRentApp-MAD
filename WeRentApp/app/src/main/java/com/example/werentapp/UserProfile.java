@@ -60,7 +60,8 @@ public class UserProfile extends AppCompatActivity {
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), StartActivity.class));
+                startActivity(new Intent(getApplicationContext(), BuyerMenu.class));
+                finish();
             }
         });
         btnLogOut.setOnClickListener(new View.OnClickListener()
@@ -71,6 +72,7 @@ public class UserProfile extends AppCompatActivity {
                     FirebaseAuth.getInstance().signOut();
                     Toast.makeText(UserProfile.this, "Logged out !", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(UserProfile.this, StartActivity.class));
+                    finish();
                 }catch (Exception e)
                 {
                     Toast.makeText(UserProfile.this, "Some error occured!", Toast.LENGTH_SHORT).show();

@@ -51,7 +51,7 @@ public class loginActivity extends AppCompatActivity {
                     if(documentSnapshot.getString("isUser") != null)
                     {
                         //if user is a normal buyer
-                        startActivity(new Intent(getApplicationContext(), UserProfile.class));
+                        startActivity(new Intent(getApplicationContext(), BuyerMenu.class));
                         finish();
                     }
                 }
@@ -179,7 +179,7 @@ public class loginActivity extends AppCompatActivity {
 
                 if(documentSnapshot.getString("isUser") != null) {
                     //user is normal buyer
-                    startActivity(new Intent(getApplicationContext(), UserProfile.class));
+                    startActivity(new Intent(getApplicationContext(), BuyerMenu.class));
                     finish();
 
                 }
