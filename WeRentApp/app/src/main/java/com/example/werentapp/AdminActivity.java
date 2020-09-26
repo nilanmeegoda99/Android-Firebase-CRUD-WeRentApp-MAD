@@ -10,7 +10,7 @@ import android.widget.Button;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class AdminActivity extends AppCompatActivity {
-    Button logout;
+    Button logout,addnewproduct;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +18,7 @@ public class AdminActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin);
 
         logout = findViewById(R.id.btlogouT);
+        addnewproduct = findViewById(R.id.addnewprod);
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -27,5 +28,15 @@ public class AdminActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        addnewproduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), Addnewproduct.class));
+
+
+            }
+        });
+
     }
 }

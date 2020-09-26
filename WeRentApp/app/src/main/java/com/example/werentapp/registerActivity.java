@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -32,10 +31,45 @@ public class registerActivity extends AppCompatActivity {
     private Button btnReg;
     boolean valid = true;
     private CheckBox isBuyer,isRenter;
-    String UserID;
+    String Usermail;
+
 
     private FirebaseAuth auth;
     private FirebaseFirestore fstore;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(FirebaseAuth.getInstance().getCurrentUser() != null)
+        {
+            DocumentReference dref = FirebaseFirestore.getInstance().collection("Users").document(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+            dref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    if(documentSnapshot.getString("isAdmin") != null)
+                    {
+                        //if user is a renter
+                        startActivity(new Intent(getApplicationContext(),AdminActivity.class));
+                        finish();
+                    }
+
+                    if(documentSnapshot.getString("isUser") != null)
+                    {
+                        //if user is a normal buyer
+                        startActivity(new Intent(getApplicationContext(), UserProfile.class));
+                        finish();
+                    }
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    FirebaseAuth.getInstance().signOut();
+                    startActivity(new Intent(getApplicationContext(),registerActivity.class));
+                    finish();
+                }
+            });
+        }
+    }
 
     private void cleartextfields()
     {
@@ -115,12 +149,7 @@ public class registerActivity extends AppCompatActivity {
                                         checkField(con_no);
                                         checkField(address);
 
-                                        //checkBox validation
-                                        if(!(isBuyer.isChecked() || isRenter.isChecked()))
-                                        {
-                                            Toast.makeText(getApplicationContext(),"Choose the account type",Toast.LENGTH_SHORT).show();
-                                            return;
-                                        }
+
 
 
                                         if(TextUtils.isEmpty(textEmail) || TextUtils.isEmpty(textPass)) {
@@ -129,6 +158,11 @@ public class registerActivity extends AppCompatActivity {
                                         }else if (textPass.length() < 6){
                                             Toast.makeText(registerActivity.this, "Password too short", Toast.LENGTH_SHORT).show();
 
+                                        }else if(!(isBuyer.isChecked() || isRenter.isChecked()))
+                                        {
+                                            //checkBox validation
+                                            Toast.makeText(getApplicationContext(),"Choose the account type",Toast.LENGTH_SHORT).show();
+                                            return;
                                         }else {
 
                                             if (valid) {
@@ -136,9 +170,10 @@ public class registerActivity extends AppCompatActivity {
                                                     @Override
                                                     public void onComplete(@NonNull Task<AuthResult> task) {
                                                         if (task.isSuccessful()) {
-                                                            Toast.makeText(registerActivity.this, "User was registered successfully", Toast.LENGTH_SHORT).show();
-                                                            UserID = auth.getCurrentUser().getUid();
-                                                            DocumentReference documentReference = fstore.collection("Users").document(UserID);
+
+
+                                                            Usermail = auth.getCurrentUser().getEmail();
+                                                            DocumentReference documentReference = fstore.collection("Users").document(Usermail);
                                                             Map<String, Object> user = new HashMap<>();
 
                                                             user.put("F_Name", fname);
@@ -162,12 +197,12 @@ public class registerActivity extends AppCompatActivity {
                                                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                                                 @Override
                                                                 public void onSuccess(Void aVoid) {
-                                                                    Toast.makeText(registerActivity.this, "Successful", Toast.LENGTH_SHORT).show();
+                                                                    Toast.makeText(registerActivity.this, "User was registered successfully", Toast.LENGTH_SHORT).show();
                                                                 }
                                                             });
                                                             if(isBuyer.isChecked())
                                                             {
-                                                                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                                                                startActivity(new Intent(getApplicationContext(), UserProfile.class));
                                                                 finish();
                                                             }
                                                             if(isRenter.isChecked())
@@ -197,7 +232,7 @@ public class registerActivity extends AppCompatActivity {
     public boolean checkField(EditText textField) {
         if(textField.getText().toString().isEmpty())
         {
-            textField.setError("Error");
+            textField.setError("Fill");
             valid = false;
         }else{
             valid = true;
@@ -205,38 +240,6 @@ public class registerActivity extends AppCompatActivity {
         return  valid;
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if(FirebaseAuth.getInstance().getCurrentUser() != null)
-        {
-            DocumentReference dref = FirebaseFirestore.getInstance().collection("Users").document(FirebaseAuth.getInstance().getCurrentUser().getUid());
-            dref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                @Override
-                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    if(documentSnapshot.getString("isAdmin") != null)
-                    {
-                        //if user is a renter
-                        startActivity(new Intent(getApplicationContext(),AdminActivity.class));
-                        finish();
-                    }
 
-                    if(documentSnapshot.getString("isUser") != null)
-                    {
-                        //if user is a normal buyer
-                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                        finish();
-                    }
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    FirebaseAuth.getInstance().signOut();
-                    startActivity(new Intent(getApplicationContext(),registerActivity.class));
-                    finish();
-                }
-            });
-        }
-    }
 
 }
