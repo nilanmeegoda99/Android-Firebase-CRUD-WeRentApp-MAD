@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "953423276453",
+    "firebase_url": "https://totestrecyclerview.firebaseio.com",
+    "project_id": "totestrecyclerview",
+    "storage_bucket": "totestrecyclerview.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:953423276453:android:892d81f5b1639458e7e04c",
+        "android_client_info": {
+          "package_name": "com.example.totestrecyclerview"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "953423276453-5290qgiapkk8rcha1slejq8sqi9nr424.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.totestrecyclerview",
+            "certificate_hash": "6b0039193f63477a2bf8eba64e1b6b59da03c0af"
+          }
+        },
+        {
+          "client_id": "953423276453-75fevfa1cp3pd80svuubf5hgoet6325h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAF1VN0wHOk-bMKbtjxe_QGB9lHHIRo788"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "953423276453-75fevfa1cp3pd80svuubf5hgoet6325h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
