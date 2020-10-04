@@ -1,4 +1,4 @@
-package com.example.activityone;
+package com.example.totestrecyclerview;
 
 import org.junit.Test;
 
