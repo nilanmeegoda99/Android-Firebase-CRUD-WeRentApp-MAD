@@ -1,5 +1,6 @@
 package com.example.werentapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -41,6 +42,12 @@ public class UserProfile extends AppCompatActivity {
         fauth = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
 
+
+
+
+
+
+
         umail = fauth.getCurrentUser().getEmail();
         DocumentReference dref =fstore.collection("Users").document(umail);
         dref.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
@@ -68,17 +75,35 @@ public class UserProfile extends AppCompatActivity {
         {
             @Override
             public void onClick(View v) {
+
+                fauth.signOut();
+
+
                 try {
                     FirebaseAuth.getInstance().signOut();
                     Toast.makeText(UserProfile.this, "Logged out !", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(UserProfile.this, StartActivity.class));
+                    final Intent intent = new Intent(getApplicationContext(),BuyerMenu.class);
                     finish();
+
+                    /*
+                     final Intent intent = new Intent(getApplicationContext(), BuyerMenu.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+
+
+                     */
+
+
                 }catch (Exception e)
                 {
                     Toast.makeText(UserProfile.this, "Some error occured!", Toast.LENGTH_SHORT).show();
                 }
-                }
+
+
+            }
 
         });
     }
+
+
 }
