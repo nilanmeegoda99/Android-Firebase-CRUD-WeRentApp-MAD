@@ -21,9 +21,15 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
     private static final String KEY_TITLE = "title";
+    private static final String KEY_ADDRESS = "address";
+    private static final String KEY_AMOUNT = "Amount";
+    private static final String KEY_BORROWED_DATE = "BorrowedDate";
     private static final String KEY_DESCRIPTION = "description";
 
     private EditText editTextTitle;
+    private EditText edit_text_Address;
+    private EditText edit_text_Amount;
+    private EditText edit_text_Borrowed_Date;
     private EditText editTextDescription;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -34,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         editTextTitle = findViewById(R.id.edit_text_title);
+        edit_text_Address = findViewById(R.id.edit_text_Address);
+        edit_text_Amount = findViewById(R.id.edit_text_Amount);
+        edit_text_Borrowed_Date = findViewById(R.id.edit_text_Borrowed_Date);
         editTextDescription = findViewById(R.id.edit_text_description);
 
     }
@@ -41,10 +50,18 @@ public class MainActivity extends AppCompatActivity {
     public void saveNote(View v)
     {
         String title = editTextTitle.getText().toString();
+        String Address = edit_text_Address.getText().toString();
+        String Amount = edit_text_Amount.getText().toString();
+        String BorrowedDate = edit_text_Borrowed_Date.getText().toString();
         String description = editTextDescription.getText().toString();
+
         Map<String, Object> note = new HashMap<>();
         note.put(KEY_TITLE, title);
+        note.put(KEY_ADDRESS, Address);
+        note.put(KEY_AMOUNT, Amount);
+        note.put(KEY_BORROWED_DATE, BorrowedDate);
         note.put(KEY_DESCRIPTION, description);
+
 
         db.collection("Delivery").document("Delivery 01").set(note)
                 .addOnSuccessListener(new OnSuccessListener<Void>()
