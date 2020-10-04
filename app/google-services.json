@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "541957740445",
+    "firebase_url": "https://werentapp-c98dc.firebaseio.com",
+    "project_id": "werentapp-c98dc",
+    "storage_bucket": "werentapp-c98dc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:541957740445:android:08c5e633f4528bab138174",
+        "android_client_info": {
+          "package_name": "com.example.werent_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "541957740445-scltdnsv0pucqamgv2gj6pfk8indckrb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuHXoV-rt4EY9UONT16QlqgtayUy42jkE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "541957740445-scltdnsv0pucqamgv2gj6pfk8indckrb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:541957740445:android:3e964d3641eaa8a2138174",
+        "android_client_info": {
+          "package_name": "com.example.werentapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "541957740445-scltdnsv0pucqamgv2gj6pfk8indckrb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuHXoV-rt4EY9UONT16QlqgtayUy42jkE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "541957740445-scltdnsv0pucqamgv2gj6pfk8indckrb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:541957740445:android:5b54aee674df76ab138174",
+        "android_client_info": {
+          "package_name": "com.example.werentapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "541957740445-scltdnsv0pucqamgv2gj6pfk8indckrb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuHXoV-rt4EY9UONT16QlqgtayUy42jkE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "541957740445-scltdnsv0pucqamgv2gj6pfk8indckrb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
