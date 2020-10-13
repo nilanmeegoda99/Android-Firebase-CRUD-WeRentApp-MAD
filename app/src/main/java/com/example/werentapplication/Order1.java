@@ -35,7 +35,7 @@ public class Order1 extends AppCompatActivity {
         et05 = findViewById(R.id.et05);
 
 
-        DatabaseReference dbView = FirebaseDatabase.getInstance().getReference().child("orderNew").child("order1");
+        DatabaseReference dbView = FirebaseDatabase.getInstance().getReference().child("orderNew").child("data1");
 
         dbView.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

@@ -29,6 +29,7 @@ public class sample_order_new extends AppCompatActivity {
         editText2 = findViewById(R.id.et02);
         editText3 = findViewById(R.id.et03);
         editText4 = findViewById(R.id.et04);
+        editText5 = findViewById(R.id.et05);
 
         buttonAdd = findViewById(R.id.addButtonnew);
 
@@ -41,17 +42,23 @@ public class sample_order_new extends AppCompatActivity {
                 try {
                     if (TextUtils.isEmpty(editText1.getText().toString())){
                         System.out.println("Empty 01");
-                    }else if (TextUtils.isEmpty(editText2.getText().toString())){
+                    }
+                    else if (TextUtils.isEmpty(editText2.getText().toString())){
                         System.out.println("Empty 02");
                     }else if (TextUtils.isEmpty(editText3.getText().toString())){
                         System.out.println("Empty 03");
                     }else if (TextUtils.isEmpty(editText4.getText().toString())){
                         System.out.println("Empty 04");
-                    }else {
+                    }
+                    else if(TextUtils.isEmpty((editText5.getText().toString()))){
+                        System.out.println("Empty 05");
+                    }
+                    else {
                         newOrder.setOrderNumber(Integer.parseInt(editText1.getText().toString().trim()));
                         newOrder.setProduct(editText2.getText().toString().trim());
                         newOrder.setCost(Integer.parseInt(editText3.getText().toString().trim()));
                         newOrder.setDays(Integer.parseInt(editText4.getText().toString().trim()));
+                        newOrder.setTotCost(Integer.parseInt(editText5.getText().toString().trim()));
 
                         dbRep.child("data1").setValue(newOrder);
                         Toast.makeText(getApplicationContext(), "Data added", Toast.LENGTH_SHORT).show();

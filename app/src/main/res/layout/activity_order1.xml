@@ -88,7 +88,7 @@
         android:id="@+id/textView7"
         android:layout_width="209dp"
         android:layout_height="64dp"
-        android:text="Add a Sample Oder"
+        android:text="Add a Oder 02"
         android:textColor="#0228FB"
         android:textSize="24sp"
         android:textStyle="bold|italic"

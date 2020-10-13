@@ -26,24 +26,6 @@ public class Viw_oder extends AppCompatActivity {
         });
 
 
-        Button order2 = findViewById(R.id.order2);
-        order2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent in = new Intent(Viw_oder.this, Order2.class);
-                startActivity(in);
-            }
-        });
 
-
-    final Button oder_3 = findViewById(R.id.order3);
-        oder_3.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick (View v){
-        Intent in = new Intent(Viw_oder.this, Oder_3.class);
-        startActivity(in);
-
-        }
-        });
     }
 }

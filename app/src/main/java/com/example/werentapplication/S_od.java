@@ -38,9 +38,12 @@ public class S_od extends AppCompatActivity {
         et03 = findViewById(R.id.et03);
         et04 = findViewById(R.id.et04);
         et05 = findViewById(R.id.et05);
+
         updateBtn = findViewById(R.id.updateBtn);
         deleteBtn = findViewById(R.id.deleteBtn);
+
         final NewOrder newOrder = new NewOrder();
+        //view method
         viewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,6 +75,7 @@ public class S_od extends AppCompatActivity {
 
         });
 
+        //update
         updateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,7 +116,8 @@ public class S_od extends AppCompatActivity {
             }
         });
 
-     deleteBtn.setOnClickListener(new View.OnClickListener() {
+     //delete
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
          @Override
          public void onClick(View v) {
              DatabaseReference delRef = FirebaseDatabase.getInstance().getReference().child("orderNew");
